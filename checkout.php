@@ -16,7 +16,15 @@ if (isset($_POST['order'])) {
     $number = mysqli_real_escape_string($conn, $_POST['number']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $method = mysqli_real_escape_string($conn, $_POST['method']);
-    $address = mysqli_real_escape_string($conn,  $_POST['flat'] . ', ' . $_POST['street'] . ', ' . $_POST['city'] . ', ' . $_POST['country'] . ' - ' . $_POST['pin_code']);
+    if (empty($_POST['street']) && empty($_POST['pin_code'])) {
+        $address = mysqli_real_escape_string($conn,  $_POST['flat'] . ', ' . $_POST['city'] . ', ' . $_POST['country']);
+    } elseif (empty($_POST['street'])) {
+        $address = mysqli_real_escape_string($conn,  $_POST['flat'] . ', ' . $_POST['city'] . ', ' . $_POST['country'] . ' - ' . $_POST['pin_code']);
+    } elseif (empty($_POST['pin_code'])) {
+        $address = mysqli_real_escape_string($conn,  $_POST['flat'] . ', ' . $_POST['street'] . ', ' . $_POST['city'] . ', ' . $_POST['country']);
+    } else {
+        $address = mysqli_real_escape_string($conn,  $_POST['flat'] . ', ' . $_POST['street'] . ', ' . $_POST['city'] . ', ' . $_POST['country'] . ' - ' . $_POST['pin_code']);
+    }
     $placed_on = date('d-M-Y h:i A');
 
     $cart_total = 0;
@@ -30,6 +38,10 @@ if (isset($_POST['order'])) {
             $cart_total += $sub_total;
         }
     }
+
+    $cart_products = array_filter($cart_products, function ($value) {
+        return !empty($value);
+    });
 
     $total_products = implode(', ', $cart_products);
 
