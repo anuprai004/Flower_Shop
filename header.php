@@ -1,13 +1,13 @@
 <?php
-if(isset($message)){
-   foreach($message as $message){
-      echo '
+if (isset($message)) {
+    foreach ($message as $message) {
+        echo '
       <div class="message">
-         <span>'.$message.'</span>
+         <span>' . $message . '</span>
          <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
       </div>
       ';
-   }
+    }
 }
 ?>
 
@@ -15,17 +15,13 @@ if(isset($message)){
 
     <div class="flex">
 
-        <a href="home.php" class="logo">flowers.</a>
+        <a href="home.php" class="logo">flowers</a>
 
         <nav class="navbar">
             <ul>
                 <li><a href="home.php">home</a></li>
-                <li><a href="#">pages +</a>
-                    <ul>
-                        <li><a href="about.php">about</a></li>
-                        <li><a href="contact.php">contact</a></li>
-                    </ul>
-                </li>
+                <li><a href="about.php">about</a></li>
+                <li><a href="contact.php">contact</a></li>
                 <li><a href="shop.php">shop</a></li>
                 <li><a href="orders.php">orders</a></li>
             </ul>
@@ -36,15 +32,15 @@ if(isset($message)){
             <a href="search_page.php" class="fas fa-search"></a>
             <div id="user-btn" class="fas fa-user"></div>
             <?php
-                $select_wishlist_count = mysqli_query($conn, "SELECT * FROM `wishlist` WHERE user_id = '$user_id'") or die('query failed');
-                $wishlist_num_rows = mysqli_num_rows($select_wishlist_count);
+            $select_wishlist_count = mysqli_query($conn, "SELECT * FROM `wishlist` WHERE user_id = '$user_id'") or die('query failed');
+            $wishlist_num_rows = mysqli_num_rows($select_wishlist_count);
             ?>
-            <a href="wishlist.php"><i class="fas fa-heart"></i><span>(<?php echo $wishlist_num_rows; ?>)</span></a>
+            <a href="wishlist.php"><i class="fas fa-heart"></i><sub><?php echo $wishlist_num_rows; ?></sub></a>
             <?php
-                $select_cart_count = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
-                $cart_num_rows = mysqli_num_rows($select_cart_count);
+            $select_cart_count = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
+            $cart_num_rows = mysqli_num_rows($select_cart_count);
             ?>
-            <a href="cart.php"><i class="fas fa-shopping-cart"></i><span>(<?php echo $cart_num_rows; ?>)</span></a>
+            <a href="cart.php"><i class="fas fa-shopping-cart"></i><sub><?php echo $cart_num_rows; ?></sub></a>
         </div>
 
         <div class="account-box">
