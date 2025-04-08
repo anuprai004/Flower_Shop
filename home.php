@@ -83,8 +83,9 @@ if (isset($_POST['add_to_cart'])) {
 
       <div class="content">
          <h3>new collections</h3>
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime reiciendis, modi placeat sit cumque molestiae.</p>
-         <a href="about.php" class="btn">discover more</a>
+         <p>Brighten someone’s day with the perfect bouquet, delivered fresh from our online flower shop!
+            Express your love and emotions with the beauty of flowers, just a click away.</p>
+         <a href="shop.php" class="btn">Discover Flowers</a>
       </div>
 
    </section>
@@ -132,7 +133,7 @@ if (isset($_POST['add_to_cart'])) {
 
       <div class="content">
          <h3>have any questions?</h3>
-         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Distinctio officia aliquam quis saepe? Quia, libero.</p>
+         <p>We're here to help with all your floral needs!</p>
          <a href="contact.php" class="btn">contact us</a>
       </div>
 

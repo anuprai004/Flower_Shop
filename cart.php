@@ -108,7 +108,6 @@ if (isset($_POST['update_quantity'])) {
 
 
     <?php @include 'footer.php'; ?>
-
     <script src="js/script.js"></script>
 
 </body>
