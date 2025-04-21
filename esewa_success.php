@@ -13,10 +13,6 @@ if (!isset($_GET['data'])) {
 $decoded = base64_decode($_GET['data']);
 $response = json_decode($decoded, true);
 
-// DEBUG (optional)
-// echo "
-//<pre>"; print_r($response); echo "</pre>";
-
 if (!$response || !isset($response['signature'])) {
     echo "Invalid or incomplete response.";
     exit;
@@ -27,7 +23,7 @@ $raw_string = "transaction_code={$response['transaction_code']},status={$respons
 
 // Recreate signature
 $expected_signature = base64_encode(hash_hmac('sha256', $raw_string, $secret_key, true));
-
+$paymentSuccessful;
 // Verify the signature and status
 if ($expected_signature === $response['signature'] && $response['status'] === 'COMPLETE') {
 
@@ -45,14 +41,52 @@ if ($expected_signature === $response['signature'] && $response['status'] === 'C
     mysqli_query($conn, "INSERT INTO `orders` (user_id, name, number, email, method, address, total_products, total_price, placed_on)
 VALUES('$user_id', '$name', '$number', '$email', '$method', '$address', '$total_products', '$cart_total', '$placed_on')") or die('order insert failed');
 
-    // Clear cart
     mysqli_query($conn, "DELETE FROM `cart` WHERE user_id = '$user_id'");
-
-    echo "<h2>Payment Successful via eSewa!</h2>
-<p>Thank you for your purchase.</p>";
-
-    // Optionally unset session values here
+    $paymentSuccessful = true;
 } else {
-    echo "<h2>Payment Verification Failed!</h2>
-<p>Invalid signature or payment was not completed.</p>";
+    $paymentSuccessful = false;
 }
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- custom admin css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <?php @include 'header.php'; ?>
+
+    <section class="esewa-success">
+        <?php
+        if ($paymentSuccessful) {
+            echo "<center><h2 style='font-size:4rem' >Payment Successfull</h2><p style='font-size:3rem'>Thank you for odering beautiful flowers!</p></center> ";
+        }
+        ?>
+
+    </section>
+    <div class="more-btn">
+        <a href="shop.php" class="option-btn">Shop more</a>
+    </div>
+
+    </section>
+    <?php @include 'footer.php'; ?>
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

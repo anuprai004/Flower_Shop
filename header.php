@@ -1,4 +1,5 @@
 <?php
+@include 'config.php';
 if (isset($message)) {
     foreach ($message as $message) {
         echo '
@@ -45,7 +46,7 @@ if (isset($message)) {
 
         <div class="account-box">
             <p>username : <span><?php echo $_SESSION['user_name']; ?></span></p>
-            <p>email : <span><?php echo $_SESSION['user_email']; ?></span></p>
+            <a href="user_details.php" class="btn">Details</a>
             <a href="logout.php" class="delete-btn">logout</a>
         </div>
 
