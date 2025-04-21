@@ -61,7 +61,7 @@ if (isset($_POST['send'])) {
             <h3>send us message!</h3>
             <input type="text" name="name" placeholder="enter your name" class="box" required>
             <input type="email" name="email" placeholder="enter your email" class="box" required>
-            <input type="number" name="number" placeholder="enter your phone number" class="box" id="number" required>
+            <input type="number" name="number" placeholder="enter your phone number" class="box" id="number" onchange="numbercheck()" required>
             <textarea name="message" class="box" placeholder="enter your message" required cols="30" rows="10"></textarea>
             <p id="error" style="color:red;font-size:large;"></p>
             <input type="submit" value="send message" onclick="return contactSubmit()" name="send" class="btn">
@@ -71,12 +71,22 @@ if (isset($_POST['send'])) {
 
     <?php @include 'footer.php'; ?>
     <script>
+        const error = document.getElementById("error");
+        const numberInput = document.getElementById("number");
+
+        function numbercheck() {
+            const number = numberInput.value.trim();
+            if (number.length === 10) {
+                error.textContent = '';
+            } else {
+                error.textContent = "Phone number must be exactly 10 digits.";
+            }
+        }
+
         function contactSubmit() {
-            const error = document.getElementById("error");
-            const number = document.getElementById("number").value;
-            const numberStr = number.toString();
-            if (numberStr.length !== 10) {
-                error.textContent = "Phone number must be exactly 10 digits."
+            const number = numberInput.value.trim();
+            if (number.length !== 10) {
+                error.textContent = "Phone number must be exactly 10 digits.";
                 return false;
             }
             return true;
