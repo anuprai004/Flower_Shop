@@ -15,7 +15,7 @@ if (isset($_POST['order'])) {
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $number = mysqli_real_escape_string($conn, $_POST['number']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $method = mysqli_real_escape_string($conn, $_POST['method']);
+    $method = mysqli_real_escape_string($conn, $_POST['payment_method']);
     if (empty($_POST['street']) && empty($_POST['pin_code'])) {
         $address = mysqli_real_escape_string($conn,  $_POST['flat'] . ', ' . $_POST['city'] . ', ' . $_POST['country']);
     } elseif (empty($_POST['street'])) {
@@ -51,6 +51,17 @@ if (isset($_POST['order'])) {
         $message[] = 'your cart is empty!';
     } elseif (mysqli_num_rows($order_query) > 0) {
         $message[] = 'order placed already!';
+    } elseif ($method === 'e-sewa') {
+        $_SESSION['checkout_name'] = $name;
+        $_SESSION['checkout_number'] = $number;
+        $_SESSION['checkout_email'] = $email;
+        $_SESSION['checkout_address'] = $address;
+        $_SESSION['total_products'] = $total_products;
+        $_SESSION['total_price'] = $cart_total;
+        $_SESSION['placed_on'] = $placed_on;
+        echo "Stored session data for eSewa checkout.";
+        header('Location: send_esewa_request.php');
+        exit;
     } else {
         mysqli_query($conn, "INSERT INTO `orders`(user_id, name, number, email, method, address, total_products, total_price, placed_on) VALUES('$user_id', '$name', '$number', '$email', '$method', '$address', '$total_products', '$cart_total', '$placed_on')") or die('query failed');
         mysqli_query($conn, "DELETE FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
@@ -74,6 +85,40 @@ if (isset($_POST['order'])) {
 
     <!-- custom admin css file link  -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Hide the actual radio buttons */
+        .payment-option input[type="radio"] {
+            display: block;
+        }
+
+        /* Style the label for Cash on Delivery */
+        .payment-option label {
+            font-size: 16px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        /* Style the E-Sewa image */
+        .esewa-option label {
+            display: inline-block;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .esewa-logo {
+            width: 150px;
+            height: auto;
+            margin-top: 2rem;
+            border: 2px rgba(102, 102, 102, 0.51) solid;
+
+        }
+
+
+        .esewa-logo.selected {
+            border-color: rgb(33, 192, 1);
+            box-shadow: 0 0 8px rgba(33, 192, 1, 0.5);
+        }
+    </style>
 
 </head>
 
@@ -107,7 +152,7 @@ if (isset($_POST['order'])) {
 
     <section class="checkout">
 
-        <form action="" method="POST">
+        <form action="" method="POST" id="orderForm" onsubmit="checkoutForm(event)">
 
             <h3>place your order</h3>
 
@@ -135,13 +180,6 @@ if (isset($_POST['order'])) {
                     <span>your email :</span>
                     <input type="email" name="email" value="<?php echo $user_email ?>"
                         placeholder="enter your email">
-                </div>
-                <div class="inputBox">
-                    <span>payment method :</span>
-                    <select name="method">
-                        <option value="cash on delivery" selected>cash on delivery</option>
-                        <option value="e-Sewa">E-Sewa</option>
-                    </select>
                 </div>
                 <div class="inputBox">
                     <span>state :</span>
@@ -176,8 +214,20 @@ if (isset($_POST['order'])) {
                     <span>pin code :</span>
                     <input type="number" min="0" name="pin_code" placeholder="e.g. 123456">
                 </div>
+                <div class="inputBox">
+                    <span>Payment Method:</span><br><br>
+                    <div class="payment-option">
+                        <label for="cash-on-delivery"><span>Cash on Delivery</span></label>
+                        <input type="radio" id="cash-on-delivery" name="payment_method" value="cash on delivery" style="margin-top: -2rem;" checked>
+                    </div>
+                    <div class="payment-option esewa-option">
+                        <input type="radio" id="e-sewa" name="payment_method" style="display: none;" value="e-sewa">
+                        <label for="e-sewa">
+                            <img src="./images/esewa_og.png" alt="E-Sewa" class="esewa-logo">
+                        </label>
+                    </div>
+                </div>
             </div>
-
             <center><input type="submit" name="order" value="order now" class="btn" style="width: 50%; margin-top: 20px;"></center>
 
         </form>
@@ -190,6 +240,22 @@ if (isset($_POST['order'])) {
 
 
     <?php @include 'footer.php'; ?>
+    <script>
+        const esewaRadio = document.getElementById("e-sewa");
+        const esewaImage = document.querySelector(".esewa-logo");
+
+        esewaRadio.addEventListener("change", function() {
+            if (this.checked) {
+                esewaImage.classList.add("selected");
+            }
+        });
+        const codRadio = document.getElementById("cash-on-delivery");
+        codRadio.addEventListener("change", function() {
+            if (this.checked) {
+                esewaImage.classList.remove("selected");
+            }
+        });
+    </script>
 
     <script src="js/script.js"></script>
 

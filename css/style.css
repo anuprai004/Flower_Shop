@@ -6,7 +6,7 @@
   --orange: #f39c12;
   --black: #333;
   --white: #fff;
-  --light-color: #666;
+  --light-color: #666666;
   --light-white: #ccc;
   --light-bg: #f5f5f5;
   --border: 0.2rem solid var(--black);
@@ -956,7 +956,8 @@ section {
   border-radius: 0.5rem;
 }
 
-.checkout form .flex .inputBox span {
+.checkout form .flex .inputBox span,
+.checkout form .flex .inputBox .radioBtn {
   font-size: 2rem;
   color: var(--light-color);
 }
