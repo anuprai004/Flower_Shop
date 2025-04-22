@@ -116,6 +116,7 @@ if (isset($_POST['order'])) {
 
         .esewa-logo.selected {
             border-color: rgb(33, 192, 1);
+            ;
             box-shadow: 0 0 8px rgba(33, 192, 1, 0.5);
         }
     </style>

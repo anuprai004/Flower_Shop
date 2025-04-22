@@ -38,8 +38,8 @@ if ($expected_signature === $response['signature'] && $response['status'] === 'C
     $method = "e-sewa";
 
     // Insert order
-    mysqli_query($conn, "INSERT INTO `orders` (user_id, name, number, email, method, address, total_products, total_price, placed_on)
-VALUES('$user_id', '$name', '$number', '$email', '$method', '$address', '$total_products', '$cart_total', '$placed_on')") or die('order insert failed');
+    mysqli_query($conn, "INSERT INTO `orders` (user_id, name, number, email, method, address, total_products, total_price, placed_on, payment_status)
+VALUES('$user_id', '$name', '$number', '$email', '$method', '$address', '$total_products', '$cart_total', '$placed_on', 'completed')") or die('order insert failed');
 
     mysqli_query($conn, "DELETE FROM `cart` WHERE user_id = '$user_id'");
     $paymentSuccessful = true;
@@ -56,7 +56,7 @@ VALUES('$user_id', '$name', '$number', '$email', '$method', '$address', '$total_
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>home</title>
+    <title>success payment</title>
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
