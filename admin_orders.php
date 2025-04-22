@@ -78,7 +78,7 @@ if (isset($_GET['delete'])) {
 
       /* Cell style */
       td {
-         padding: 14px 20px;
+         padding: 10px 15px;
          color: #444;
          border-bottom: 1px solid #f1f1f1;
          vertical-align: middle;
@@ -184,7 +184,7 @@ if (isset($_GET['delete'])) {
                      <td><?php echo $fetch_orders['number']; ?></td>
                      <td><?php echo $fetch_orders['address']; ?></td>
                      <td><?php echo $fetch_orders['total_products']; ?></td>
-                     <td>$<?php echo $fetch_orders['total_price']; ?>/-</td>
+                     <td>Rs. <?php echo $fetch_orders['total_price']; ?>/-</td>
                      <td><?php echo $fetch_orders['method']; ?></td>
                      <td><span style="color:<?php if ($fetch_orders['payment_status'] == 'pending') {
                                                 echo 'goldenrod';

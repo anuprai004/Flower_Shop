@@ -73,7 +73,7 @@ VALUES('$user_id', '$name', '$number', '$email', '$method', '$address', '$total_
     <section class="esewa-success">
         <?php
         if ($paymentSuccessful) {
-            echo "<center><h2 style='font-size:4rem' >Payment Successfull</h2><p style='font-size:3rem'>Thank you for odering beautiful flowers!</p></center> ";
+            echo "<center><h2 style='font-size:4rem' >Payment Successfull</h2><p style='font-size:3rem'>Thank you for odering beautiful flowers!</p><br><br><p>You will receive your order soon!</p></center> ";
         }
         ?>
 
