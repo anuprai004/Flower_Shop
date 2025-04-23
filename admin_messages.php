@@ -12,14 +12,8 @@ if (!isset($admin_id)) {
 
 if (isset($_GET['delete'])) {
    $delete_id = $_GET['delete'];
-   mysqli_query($conn, "DELETE FROM `users` WHERE id = '$delete_id'") or die('query failed');
-   header('location:admin_users.php');
-}
-
-if (isset($_GET['remove-admin'])) {
-   $remove_admin_id = $_GET['remove-admin'];
-   $update_user = mysqli_query($conn, "UPDATE `users` SET user_type = 'user' WHERE id = $remove_admin_id");
-   header('location:admin_users.php');
+   mysqli_query($conn, "DELETE FROM `message` WHERE id = '$delete_id'") or die('query failed');
+   header('location:admin_messages.php');
 }
 
 ?>
@@ -38,8 +32,6 @@ if (isset($_GET['remove-admin'])) {
 
    <!-- custom admin css file link  -->
    <link rel="stylesheet" href="css/admin_style.css">
-
-   <!-- Optional: Add some custom styling for the table -->
    <style>
       /* Overall table layout */
       table {
@@ -143,48 +135,59 @@ if (isset($_GET['remove-admin'])) {
 
    <?php @include 'admin_header.php'; ?>
 
-   <section class="users">
+   <section class="messages">
 
-      <h1 class="title">Users Account</h1>
+      <h1 class="title">messages</h1>
 
-      <table>
-         <thead>
-            <tr>
-               <th>Username</th>
-               <th>Email</th>
-               <th>User Type</th>
-               <th>Action</th>
-            </tr>
-         </thead>
-         <tbody>
-            <?php
-            $select_users = mysqli_query($conn, "SELECT * FROM `users`") or die('query failed');
-            if (mysqli_num_rows($select_users) > 0) {
-               while ($fetch_users = mysqli_fetch_assoc($select_users)) {
-            ?>
+      <?php
+      $select_message = mysqli_query($conn, "SELECT * FROM `message`") or die('query failed');
+
+      if (mysqli_num_rows($select_message) > 0) {
+      ?>
+         <table class="message-table">
+            <thead>
+               <tr>
+                  <th>Name</th>
+                  <th>Number</th>
+                  <th>Email</th>
+                  <th>Message</th>
+                  <th>Action</th>
+               </tr>
+            </thead>
+            <tbody>
+               <?php while ($fetch_message = mysqli_fetch_assoc($select_message)) { ?>
                   <tr>
-                     <td><?php echo $fetch_users['name']; ?></td>
-                     <td><?php echo $fetch_users['email']; ?></td>
-                     <td style="color:<?php if ($fetch_users['user_type'] == 'admin') {
-                                          echo 'var(--orange)';
-                                       }; ?>">
-                        <?php echo $fetch_users['user_type']; ?>
-                        <?php if ($fetch_users['user_type'] == 'admin' && ($fetch_users['id'] != $admin_id)) { ?>
-                           <a href="admin_users.php?remove-admin=<?php echo $fetch_users['id']; ?>" onclick="return confirm('remove this user from admin?');" class="option-btn">Remove</a>
-                        <?php } ?>
-                     </td>
+                     <td><?php echo $fetch_message['name']; ?></td>
+                     <td><?php echo $fetch_message['number']; ?></td>
+                     <td><?php echo $fetch_message['email']; ?></td>
+                     <td><?php echo $fetch_message['message']; ?></td>
                      <td>
-                        <a href="admin_users.php?delete=<?php echo $fetch_users['id']; ?>" onclick="return confirm('delete this user?');" class="delete-btn">Delete</a>
+                        <a href="admin_messages.php?delete=<?php echo $fetch_message['id']; ?>" onclick="return confirm('Delete this message?');" class="delete-btn">Delete</a>
                      </td>
                   </tr>
-            <?php
-               }
-            }
-            ?>
-         </tbody>
-      </table>
+               <?php } ?>
+            </tbody>
+         </table>
+      <?php
+      } else {
+         echo '<p class="empty">You have no messages!</p>';
+      }
+      ?>
+
 
    </section>
+
+
+
+
+
+
+
+
+
+
+
+
 
    <script src="js/admin_script.js"></script>
 
