@@ -46,7 +46,7 @@ if(!isset($user_id)){
 
         <div class="content">
             <h3>why choose us?</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum odit voluptatum alias sed est in magni nihil nisi deleniti nostrum.</p>
+            <p>We source our flowers daily to ensure you receive only the freshest blooms. Every arrangement is handcrafted with love and care by our expert florists.</p>
             <a href="shop.php" class="btn">shop now</a>
         </div>
 
@@ -56,7 +56,7 @@ if(!isset($user_id)){
 
         <div class="content">
             <h3>what we provide?</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum odit voluptatum alias sed est in magni nihil nisi deleniti nostrum.</p>
+            <p>We offer a wide variety of fresh, seasonal blooms sourced daily to ensure top quality and longevity. Every bouquet is thoughtfully arranged with love and care.</p>
             <a href="contact.php" class="btn">contact us</a>
         </div>
 
@@ -74,7 +74,10 @@ if(!isset($user_id)){
 
         <div class="content">
             <h3>who we are?</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum odit voluptatum alias sed est in magni nihil nisi deleniti nostrum.</p>
+            <p>Welcome to Ikigai Flower Shop – where every bloom tells a story.
+We’re a passionate team of flower lovers dedicated to spreading joy through beautiful, fresh, and handcrafted floral arrangements. Whether it’s a special celebration or just because, we’re here to help you express your feelings with the perfect bouquet.
+
+Rooted in love and creativity, we believe flowers have the power to brighten lives – and we’re proud to bring that happiness right to your doorstep.</p>
             <a href="#reviews" class="btn">clients reviews</a>
         </div>
 
@@ -90,7 +93,7 @@ if(!isset($user_id)){
 
         <div class="box">
             <img src="images/pic-1.png" alt="">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia animi consequatur nostrum cumque itaque ducimus, iure expedita voluptates. Minima, minus.</p>
+            <p>Beautiful flowers and super fast delivery! My mom loved her birthday bouquet. Thank you!</p>
             <div class="stars">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
@@ -103,7 +106,7 @@ if(!isset($user_id)){
 
         <div class="box">
             <img src="images/pic-2.png" alt="">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia animi consequatur nostrum cumque itaque ducimus, iure expedita voluptates. Minima, minus.</p>
+            <p>Great service and fresh flowers every time. Ordering online was easy and quick!</p>
             <div class="stars">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
@@ -116,7 +119,7 @@ if(!isset($user_id)){
 
         <div class="box">
             <img src="images/pic-3.png" alt="">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia animi consequatur nostrum cumque itaque ducimus, iure expedita voluptates. Minima, minus.</p>
+            <p>Lovely arrangement, just like the photo. Slight delay in delivery but worth the wait!</p>
             <div class="stars">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
@@ -129,7 +132,7 @@ if(!isset($user_id)){
 
         <div class="box">
             <img src="images/pic-4.png" alt="">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia animi consequatur nostrum cumque itaque ducimus, iure expedita voluptates. Minima, minus.</p>
+            <p>Excellent quality and amazing customer support. Will definitely order again!</p>
             <div class="stars">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
@@ -142,7 +145,7 @@ if(!isset($user_id)){
 
         <div class="box">
             <img src="images/pic-5.png" alt="">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia animi consequatur nostrum cumque itaque ducimus, iure expedita voluptates. Minima, minus.</p>
+            <p>The flowers were fresh and smelled amazing. Perfect gift for my anniversary!</p>
             <div class="stars">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
@@ -155,7 +158,7 @@ if(!isset($user_id)){
 
         <div class="box">
             <img src="images/pic-6.png" alt="">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia animi consequatur nostrum cumque itaque ducimus, iure expedita voluptates. Minima, minus.</p>
+            <p>Great prices and lots of options. Some flowers wilted quickly, but overall very happy</p>
             <div class="stars">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>

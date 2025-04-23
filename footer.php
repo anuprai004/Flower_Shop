@@ -21,9 +21,9 @@
         <div class="box">
             <h3>contact info</h3>
             <p> <i class="fas fa-phone"></i> +123-456-7890 </p>
-            <p> <i class="fas fa-phone"></i> +111-222-3333 </p>
-            <p> <i class="fas fa-envelope"></i> shaikhanas@gmail.com </p>
-            <p> <i class="fas fa-map-marker-alt"></i> mumbai, india - 123-456 </p>
+            <p> <i class="fas fa-phone"></i> 9826268599 </p>
+            <p> <i class="fas fa-envelope"></i> raianup@gmail.com </p>
+            <p> <i class="fas fa-map-marker-alt"></i> Jhapa,Nepal,Damak-01</p>
         </div>
 
         <div class="box">
@@ -31,11 +31,11 @@
             <a href="#"><i class="fab fa-facebook-f"></i>facebook</a>
             <a href="#"><i class="fab fa-twitter"></i>twitter</a>
             <a href="#"><i class="fab fa-instagram"></i>instagram</a>
-            <a href="#"><i class="fab fa-linkedin"></i>linkedin</a>
+            <a href="#"><i class="fab fa-tiktok"></i>tiktok</a>
         </div>
 
     </div>
 
-    <div class="credit">&copy; copyright @ <?php echo date('Y'); ?> by <span>mr. web designer</span> </div>
+    
 
 </section>
