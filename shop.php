@@ -91,16 +91,25 @@ if (isset($_POST['add_to_cart'])) {
         <div class="box-container">
 
             <?php
-            $select_products = mysqli_query($conn, "SELECT * FROM `products`") or die('query failed');
+            $products_per_page = 6;
+            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+            $offset = ($page - 1) * $products_per_page;
+
+
+            $select_products = mysqli_query($conn, "SELECT * FROM `products` LIMIT $offset, $products_per_page") or die('query failed');
+            $total_products = mysqli_query($conn, "SELECT COUNT(*) AS total FROM `products`");
+            $row = mysqli_fetch_assoc($total_products);
+            $total_pages = ceil($row['total'] / $products_per_page);
+
             if (mysqli_num_rows($select_products) > 0) {
                 while ($fetch_products = mysqli_fetch_assoc($select_products)) {
             ?>
                     <form action="" method="POST" class="box">
                         <a href="view_page.php?pid=<?php echo $fetch_products['id']; ?>" class="fas fa-eye"></a>
-                        <div class="price">$<?php echo $fetch_products['price']; ?>/-</div>
+                        <div class="price">Rs. <?php echo $fetch_products['price']; ?>/-</div>
                         <img src="flowers/<?php echo $fetch_products['image']; ?>" alt="" class="image">
                         <div class="name"><?php echo $fetch_products['name']; ?></div>
-                        <input type="number" name="product_quantity" value="1" min="0" class="qty">
+                        <input type="number" name="product_quantity" value="1" min="1" class="qty">
                         <input type="hidden" name="product_id" value="<?php echo $fetch_products['id']; ?>">
                         <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
                         <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
@@ -115,15 +124,23 @@ if (isset($_POST['add_to_cart'])) {
             }
             ?>
 
-        </div>
-
     </section>
+    <center>
+        <div class="pagination">
+            <?php if ($page > 1): ?>
+                <a href="shop.php?page=<?php echo $page - 1; ?>" class="btn">Prev</a>
+            <?php endif; ?>
 
+            <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                <a href="shop.php?page=<?php echo $i; ?>" class="btn <?php if ($i == $page) echo 'active'; ?>"><?php echo $i; ?></a>
+            <?php endfor; ?>
 
-
-
-
-
+            <?php if ($page < $total_pages): ?>
+                <a href="shop.php?page=<?php echo $page + 1; ?>" class="btn">Next</a>
+            <?php endif; ?>
+        </div>
+    </center>
+    </div>
     <?php @include 'footer.php'; ?>
 
     <script src="js/script.js"></script>

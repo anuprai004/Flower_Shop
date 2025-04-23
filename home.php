@@ -83,8 +83,14 @@ if (isset($_POST['add_to_cart'])) {
 
       <div class="content">
          <h3>new collections</h3>
+<<<<<<< HEAD
          <p>Fresh blooms that welcome the change of season.</p>
          <a href="about.php" class="btn">discover more</a>
+=======
+         <p>Brighten someone’s day with the perfect bouquet, delivered fresh from our online flower shop!
+            Express your love and emotions with the beauty of flowers, just a click away.</p>
+         <a href="shop.php" class="btn">Discover Flowers</a>
+>>>>>>> d531081510e53614ca7c5047bbe680ae88132889
       </div>
 
    </section>
@@ -102,10 +108,10 @@ if (isset($_POST['add_to_cart'])) {
          ?>
                <form action="" method="POST" class="box">
                   <a href="view_page.php?pid=<?php echo $fetch_products['id']; ?>" class="fas fa-eye"></a>
-                  <div class="price">$<?php echo $fetch_products['price']; ?>/-</div>
+                  <div class="price">Rs. <?php echo $fetch_products['price']; ?>/-</div>
                   <img src="flowers/<?php echo $fetch_products['image']; ?>" alt="" class="image">
                   <div class="name"><?php echo $fetch_products['name']; ?></div>
-                  <input type="number" name="product_quantity" value="1" min="0" class="qty">
+                  <input type="number" name="product_quantity" value="1" min="1" class="qty">
                   <input type="hidden" name="product_id" value="<?php echo $fetch_products['id']; ?>">
                   <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
                   <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
@@ -132,7 +138,11 @@ if (isset($_POST['add_to_cart'])) {
 
       <div class="content">
          <h3>have any questions?</h3>
+<<<<<<< HEAD
          <p>We're here to help! Whether you're looking for the perfect bouquet, need help with an order, or just want to say hello — we’d love to hear from you.</p>
+=======
+         <p>We're here to help with all your floral needs!</p>
+>>>>>>> d531081510e53614ca7c5047bbe680ae88132889
          <a href="contact.php" class="btn">contact us</a>
       </div>
 
